@@ -65,22 +65,35 @@ we can simplify the equation<br>
 We find the triangular numbers described by the equation<br>
 (n * (n - 1)) * 0.5f = (n ^ 2 - n) * 0.5f<br>
 
+// DO NOT COPY PASTE THE FOLLOWING SECTION. IT IS NOT OPTIMIZED. <br>
 
-Vector3[] vertices;<br>
-float[] Distances = new float[(n * (n - 1)) * 0.5f]<br>
 for(int x = 0; x < n; x++)<br>
   for(int y = x + 1; y < n; y++)<br>
       Distances[x * n + y] = Mathf.Sqrt(vertices[x].x - vertices[y].x + vertices[x].y - vertices[y].y + vertices[x].z - vertices[y].z);<br>
   
  We should remain vigilant where we state "Distances[x * n + y]", as we go from this quadratic polynomial on to cubic or quartic polynomials,<br>
  and we start looking at even more for loops being in for loops, being in for loops, etc. and we start to see that <br>
- [x * n + y]<br>
- [x * n * n  + y * n + z]<br>
- [x * n * n * n + y * n * n + z * n + w]... You get the point.<br>
+ 2 nested for loops would need [x * n + y]<br>
+ 3 nested for loops would need [x * n * n  + y * n + z]<br>
+ 4 nested for loops would need [x * n * n * n + y * n * n + z * n + w]... You get the point.<br>
  
  Imagine that that polynomial would have to be calculated every single time the innermost for loop executed... that would add up to MANY, MANY multiplications<br>
  having to be performed.<br>
- One can simplify this by initializing an INDEXER.<br>
+ 
+ Another error that some programmers might make is-<br>
+ 
+ // DO NOT COPY PASTE THE FOLLOWING SECTION. IT IS NOT OPTIMIZED. <br>
+ Vector3[] vertices;<br>
+Vector3[] Distances = new float[(n * (n - 1)) * 0.5f]<br>
+int a = 0, b = 0;
+for(int x = 0; x < n; x++)<br>
+    a = x * n * n;
+  for(int y = 0; y < n; y++)<br>
+        b = a + y * n;
+      for(int z = 0; y < n; y++)<br>
+            Distances[a + b + z] = (Calculations);
+            
+ This is often seen when programmers are taught mathematics in the form of ax^3 + bx^2 + cx + d = 0. They might think that they could do the indexer by doing these operations in piecemeal, but they could be simplified initializing an INDEXER... (There are also cases where programmers define a and b after the inner for loops are performed, which could also be identified. One would hope the compiler would automatically correct it to prevent flare ups, but that is not guaranteed...) <br>
  This is simply a variable that also goes in to the for loops and gets incremented by 1.<br>
  
  int index = 0;<br>
@@ -93,7 +106,8 @@ for(int x = 0; x < n; x++)<br>
   }<br>
 } <br>
 As simple as it gets I do believe, saves on electricity, allows the program to execute more quickly, nice.<br>
-  
+Lesson: Even though it seems impressive to have polynomials with multiple terms in your code, sometimes all you need to do is just keep adding 1 and that is optimal.<br>
+ 
 What happens if we continue this pattern?<br>
 Well, it does seem that we start moving along Pa....'s Triangle.<br>
 From the row of (1,1,1,1...), to the natural numbers (1,2,3,4...) to the triangular numbers (1,3,6,10...) to the tetrahedral numbers(1,4,10,20,...)<br>
