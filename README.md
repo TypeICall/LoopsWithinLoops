@@ -31,7 +31,23 @@ This goes around a circle sector by sector-<br>
 Vector2[] CircumRadii;<br>
 int pointCount = 0;<br>
 float Sector = (2*Mathf.PI)/ nGon;<br>
-for(float i = 0; i <= 2*Mathf.PI; i += Sector) { CircumRadii[pointCount] = new Vector2(Mathf.sin(i), Mathf.cos(i)); pointCount++; }<br>
+float Round = 2 * Mathf.Pi;
+for(float i = 0; i <= Round; i += Sector) { CircumRadii[pointCount] = new Vector2(Mathf.sin(i), Mathf.cos(i)); pointCount++; }<br>
+
+This could also be done with a while loop <br>
+Vector2[] CircumRadii;<br>
+int i = 0;<br>
+int nGon; <br>
+float Sector = (2*Mathf.PI)/ nGon;<br>
+float slices = 0;<br>
+while(i <= nGon)<br>
+{<br>
+CircumRadii[i] = new Vector2(Mathf.sin(slices), Mathf.cos(slices)); }<br>
+slices += Sector;<br>
+i++; <br>
+}<br>
+
+
 
 Could also have multiple evaluations in the middle<br>
 for(int i = 0; i < 60 && b > 0; i++)<br>
