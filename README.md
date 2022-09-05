@@ -46,10 +46,10 @@ Rectangular = This is how computer monitor's refresh. where there are x * y loop
 Color32[] colors32 = new Color32[ScreenHeightInPixels * ScreenWidthInPixels];<br>
 for(int x = 0; x < ScreenHeightInPixels; x++)<br>
   for(int y = 0;y < ScreenWidthInPixels; y++)<br>
-    colors32[y,x] = new Color32(R,G,B,A);  // where RGBA are in the range between (0-255)<br>
+    colors32[y,x] = new Color32(R,G,B,A);  // where RGBA are in the range between (0-255) and then 256 goes to 0, 257 goes to 1, and 258 goes to 2, etc.<br>
     OR<br>
     colors[y,x] = new Color(R,G,B,A); (where R,G,B,A are in the range between (0-255)<br>
-    
+  
 Cubic<br>
 for(int x = 0; x < n; x++)<br>
   for(int y = 0; y < n; y++)<br>
