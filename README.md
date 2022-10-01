@@ -6,7 +6,7 @@ for loops<br>
 Syntactical Structure<br>
 for(int i = 0; i < limit; i++)<br>
 for(variable type initialized at an amount; <br>
-    comparision operation that tells the loop when it is time to break the loop and go on to the next lines of code instead of going from bottom line to the top line;<br>
+    comparision operation that tells the loop when it is time to break the loop and go on to the lines of code after;<br>
     incrementer)<br>
 
 typical loops:<br>
@@ -16,10 +16,10 @@ for(int i = 0; i < limit; i++) { }<br>
 Descending<br>
 for(int i = limit; i > 0; i--) { }<br>
 
-Could also change increment<br>
-Evens<br>
+Could also change increment as in simple polynomials<br>
+Evens = 2n <br>
 for(int i = 0; i < limit; i +=2) { }<br>
-Odds<br>
+Odds = 2n + 1 <br>
 for(int i = 1; i < limit; i +=2) { }<br>
 
 Could have an increment that is not regularly spaced<br>
@@ -46,7 +46,6 @@ CircumRadii[i] = new Vector2(Mathf.sin(slices), Mathf.cos(slices)); }<br>
 slices += Sector;<br>
 i++; <br>
 }<br>
-
 
 
 Could also have multiple evaluations in the middle<br>
@@ -82,7 +81,6 @@ We find the triangular numbers described by the equation<br>
 (n * (n - 1)) * 0.5f = (n ^ 2 - n) * 0.5f<br>
 
 // DO NOT COPY PASTE THE FOLLOWING SECTION. IT IS NOT OPTIMIZED. <br>
-
 for(int x = 0; x < n; x++)<br>
   for(int y = x + 1; y < n; y++)<br>
       Distances[x * n + y] = Mathf.Sqrt(vertices[x].x - vertices[y].x + vertices[x].y - vertices[y].y + vertices[x].z - vertices[y].z);<br>
@@ -109,8 +107,9 @@ for(int x = 0; x < n; x++)<br>
       for(int z = 0; y < n; y++)<br>
             Distances[a + b + z] = (Calculations);
             
- This is often seen when programmers are taught mathematics in the form of ax^3 + bx^2 + cx + d = 0. They might think that they could do the indexer by doing these operations in piecemeal, but they could be simplified initializing an INDEXER... (There are also cases where programmers define a and b after the inner for loops are performed, which could also be identified. One would hope the compiler would automatically correct it to prevent flare ups, but that is not guaranteed...) <br>
- This is simply a variable that also goes in to the for loops and gets incremented by 1.<br>
+ This is often seen when programmers are taught mathematics in the form of ax^3 + bx^2 + cx + d = 0. They might think that they could do the indexer by doing these operations in piecemeal, but they could be simplified initializing an INDEXER... (There are also cases where programmers define a and b after the inner for loops are performed, which could also be identified. One would hope the compiler would automatically correct it to prevent flare ups, but that is not guaranteed by any programming language so far as I am aware...) <br>
+ 
+ The INDEXER is simply a variable that also goes in to the for loops and gets incremented by 1 to set the location in memory where bits will be stored.<br>
  
  int index = 0;<br>
  for(int x = 0; x < n; x++)<br>
