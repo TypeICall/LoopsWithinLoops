@@ -122,6 +122,24 @@ for(int x = 0; x < n; x++)<br>
 } <br>
 As simple as it gets I do believe, saves on electricity, allows the program to execute more quickly, nice.<br>
 Lesson: Even though it seems impressive to have polynomials with multiple terms in your code, sometimes all you need to do is just keep adding 1 and that is optimal.<br>
+
+
+Another common optimization error is when the coder decides to define things in the innermost for loop that could be defined in an outer for loop.
+for(int x = 0; x < n; x++)<br>
+  for(int y = 0; y < n; y++)<br>
+      for(int z = 0; y < n; y++)<br>
+            Differences[a + b + z] = (Mathf.Abs(y -z), Mathf.Abs(x - z), Mathf.Abs(x - y))<br>
+            
+Here the Mathf.Abs(x - y) term could be brought out in order to save some calculations.<br>
+
+int xy;
+for(int x = 0; x < n; x++)<br>
+  for(int y = 0; y < n; y++)<br>
+      xy = Mathf.Abs(x - y);
+      for(int z = 0; y < n; y++)<br>
+            Differences[a + b + z] = (Mathf.Abs(y -z), Mathf.Abs(x - z), xy)<br><br>
+ Scanning over your code to see if some calculations could be brought up out of the inner for loops and defined fewer times is good practice.<br>
+ 
  
 What happens if we continue this pattern?<br>
 Well, it does seem that we start moving along Pa....'s Triangle.<br>
