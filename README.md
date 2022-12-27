@@ -186,8 +186,38 @@ for(int i = 0; i < n; i++)<br>
   }<br>
 }<br>
 <br>
+
+What happens if you declare too few spaces in memory for the array to fit? <br>
+The program will stop running once it reaches the # address in memory that is equal to the number of spots that were designated to be in memory when the array was intialized. <br>
+This would look like-<br>
+int[] points = new int[4];<br>
+for(int x = 0; x < 8; x++)<br>
+{<br>
+    points[x] = x; <br>
+}<br>
+
+When x is incremented up to 4, then the error will be recognized because there were only memory locations (0,1,2,3) created<br>
+
+What happens if you declare too many spaces in memory for the array to fit? <br>
+It might seem like a quick fix to just make the number of spaces in memory to be a higher number than you would need, instead of taking the time to find the exact polynomial, but<br>
+some problems can arise from that choice. <br>
+The program is stored in memory mostly continuously, linearly, as you define each data type, line by line. <br>
+There are some breaks where certain keywords will cause the Read to go to other locations in memory, which does cost some time and electricity, but if you are writing a program then it will be mostly contained within a neighborhood and that neighborhood of transistors switched on or off with current flowing through or not flowing through- those neighborhoods will have to be navigated through by the reader. It will take longer in navigating through memory if you have extra, empty memory that needs to be passed by. <br> 
+
 Why not use a list?<br>
 Lists have to resize their selves. Because the size of the list is unknown, they get allocated a small number of bits in memory initially, <br>
 but then once they reach a ((2 ^ n)- 1) threshold and another term is added, then they will have to change their size. <br>
 There are performance gains when we use arrays and tell exactly how much memory there is going to be used for the array before we start adding terms to it.<br>
 It is not always the case that we know how big an array will be, so there are many cases where it makes sense to use Lists.<br>
+
+Why use a list? <br>
+Lists allow for easier ways of adding and subtracting one or more terms in a single line of code. <br>
+When a piece of data is removed from a list, then it will automatically cause the item that was stored after to move in to the now empty spot in memory and then every term thereafter will have their # in memory reduced by how many items were deleted.<br>
+This can cause some confusion when looping through the list and trying to sequentially remove items while the list is restructuring it's self.<br>
+If one is using the list as a minimum or maximum value in a loop, the size of that list could be changed inside of that loop and therefore seem to move about it's # address in memory. <br>
+
+When to use Lists? <br>
+Lists are really helpful when one is not certain how many addresses in memory seem reasonable to designate. <br>
+Technically, Lists are not needed if the data is static and unchanging throughout the course of the program's duration.<br>
+Lists are more associated with the idea of mutability and Lists allow data to flow in and out with ease. <br>
+
